@@ -26,7 +26,7 @@ This project focuses on designing and implementing a data warehouse solution to 
 ## Technical Stack
 - **Database:** PostgreSQL / Snowflake (or your preferred data warehouse solution)
 - **ETL Tools:** Python with Pandas, Apache Airflow
-- **Visualization:** Tableau / Power BI
+- **Visualisation:** Tableau / Power BI
 - **Cloud Platform:** AWS / Azure / GCP (Optional)
 - **Version Control:** Git and GitHub
 
@@ -61,14 +61,12 @@ This project focuses on designing and implementing a data warehouse solution to 
 
  - Install required Python packages:
 ```bash
-Copy code
 pip install -r requirements.txt
 Configure database connection details in config.yaml.
 ```
 3. **Run the ETL pipeline:**
 
 ```bash
-Copy code
 python etl_pipeline.py
 ```
 4. **Explore dashboards:**

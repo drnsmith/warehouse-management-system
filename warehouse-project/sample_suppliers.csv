@@ -1,0 +1,4 @@
+supplier_id,supplier_name,item_id,supply_lead_time
+1,Supplier X,101,5
+2,Supplier Y,102,7
+3,Supplier Z,103,3

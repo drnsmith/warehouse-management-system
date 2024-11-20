@@ -62,8 +62,9 @@ This project focuses on designing and implementing a data warehouse solution to 
  - Install required Python packages:
 ```bash
 pip install -r requirements.txt
-Configure database connection details in config.yaml.
 ```
+ - Configure database connection details in config.yaml.
+
 3. **Run the ETL pipeline:**
 
 ```bash

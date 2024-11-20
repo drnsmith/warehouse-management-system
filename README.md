@@ -1,4 +1,4 @@
-# Warehouse Management and Optimization Project
+# Warehouse Management and Optimisation Project
 
 ## Overview
 This project focuses on designing and implementing a data warehouse solution to optimise warehouse operations. By leveraging structured data and analytical tools, the project aims to improve decision-making, enhance operational efficiency, and provide meaningful insights into inventory management, order processing, and logistics.
@@ -17,7 +17,7 @@ This project focuses on designing and implementing a data warehouse solution to 
 - **Data-Driven Decision Making:** Enable business intelligence tools for advanced analytics and predictive modelling.
 
 ## Data Sources
-# The project integrates data from:
+### The project integrates data from:
 - Inventory management systems
 - Order management platforms
 - Supplier and logistics databases
@@ -33,8 +33,8 @@ This project focuses on designing and implementing a data warehouse solution to 
 ## Architecture
 ### ETL Pipeline
 1. **Extraction:** Gather data from APIs, flat files, and database exports.
-2. **Transformation:** Clean, normalize, and enrich data for consistency.
-3. **Loading:** Store transformed data into a centralized data warehouse.
+2. **Transformation:** Clean, normalise, and enrich data for consistency.
+3. **Loading:** Store transformed data into a centralised data warehouse.
 
 ### Data Warehouse Schema
 - **Schema:** Star or Snowflake schema with fact and dimension tables.
@@ -42,11 +42,11 @@ This project focuses on designing and implementing a data warehouse solution to 
 - **Dimension Tables:** Products, suppliers, warehouses, and customers.
 
 ### Analytics Layer
-- Predefined queries for operational insights.
+- Pre-defined queries for operational insights.
 - Custom dashboards for KPI tracking.
 
 ## Key Deliverables
-- **Data Warehouse Schema:** A fully normalized and optimized schema.
+- **Data Warehouse Schema:** A fully normalised and optimised schema.
 - **ETL Pipelines:** Scripts and workflows for automated data ingestion.
 - **Dashboards and Reports:** Interactive dashboards displaying key operational metrics.
 - **Documentation:** Clear instructions for setup, usage, and future maintenance.
@@ -77,7 +77,7 @@ python etl_pipeline.py
 
 ## Future Enhancements
  - Integration with predictive analytics for demand forecasting.
- - Deployment of machine learning models to optimize stock levels.
+ - Deployment of machine learning models to optimise stock levels.
  - Expansion to include real-time IoT data from warehouse sensors.
 
 ## License

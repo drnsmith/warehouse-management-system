@@ -56,7 +56,7 @@ This project focuses on designing and implementing a data warehouse solution to 
    ```bash
    git clone https://github.com/yourusername/warehouse-management.git
    cd warehouse-management
-
+   ```
 2. **Set up the environment:**
 
  - Install required Python packages:
@@ -64,13 +64,13 @@ This project focuses on designing and implementing a data warehouse solution to 
 Copy code
 pip install -r requirements.txt
 Configure database connection details in config.yaml.
-
+```
 3. **Run the ETL pipeline:**
 
 ```bash
 Copy code
 python etl_pipeline.py
-
+```
 4. **Explore dashboards:**
 
  - Open the visualisations folder to access Tableau or Power BI files.

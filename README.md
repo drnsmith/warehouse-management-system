@@ -1,86 +1,174 @@
-# Warehouse Management and Optimisation Project
+# **Warehouse Management System**
 
-## Overview
-This project focuses on designing and implementing a data warehouse solution to optimise warehouse operations. By leveraging structured data and analytical tools, the project aims to improve decision-making, enhance operational efficiency, and provide meaningful insights into inventory management, order processing, and logistics.
+## **Project Overview**
+This project demonstrates a **warehouse management system** that uses **ETL pipelines** and **PostgreSQL** for efficient inventory and order management. The system supports data ingestion, low-stock alerts, supplier management, and analytical queries to enhance operational decision-making.
 
-## Features
-- **Centralised Data Repository:** Consolidates data from multiple sources, including inventory systems, order management platforms, and supply chain databases.
-- **Optimised Query Performance:** Designed to handle complex queries efficiently, enabling real-time analytics and reporting.
-- **Customisable Dashboards:** Provides stakeholders with visual insights into key metrics, including stock levels, order fulfillment rates, and delivery times.
-- **ETL Pipelines:** Automates the extraction, transformation, and loading of data to ensure consistency and reliability.
-- **Scalable Architecture:** Supports future growth by accommodating larger datasets and additional data sources.
+---
 
-## Project Objectives
-- **Improve Inventory Tracking:** Reduce stockouts and overstock scenarios by maintaining accurate, real-time inventory data.
-- **Streamline Order Processing:** Identify bottlenecks and optimise workflows for faster order fulfillment.
-- **Enhance Supply Chain Visibility:** Provide stakeholders with actionable insights into supplier performance and logistics efficiency.
-- **Data-Driven Decision Making:** Enable business intelligence tools for advanced analytics and predictive modelling.
+## **Features**
+1. **Database Schema**:
+   - Tracks inventory, orders, and supplier details through a relational database.
+   - Enforces referential integrity using foreign keys.
+   
+2. **SQL Queries**:
+   - Identifies low inventory items.
+   - Recommends the fastest suppliers for replenishment.
+   - Aggregates order quantities for inventory planning.
 
-## Data Sources
-### The project integrates data from:
-- Inventory management systems
-- Order management platforms
-- Supplier and logistics databases
-- Historical sales and demand data
+3. **ETL Pipeline**:
+   - Loads inventory data from CSV files into the database.
+   - Automates data extraction, transformation, and loading (ETL).
 
-## Technical Stack
-- **Database:** PostgreSQL / Snowflake (or your preferred data warehouse solution)
-- **ETL Tools:** Python with Pandas, Apache Airflow
-- **Visualisation:** Tableau / Power BI
-- **Cloud Platform:** AWS / Azure / GCP (Optional)
-- **Version Control:** Git and GitHub
+---
 
-## Architecture
-### ETL Pipeline
-1. **Extraction:** Gather data from APIs, flat files, and database exports.
-2. **Transformation:** Clean, normalise, and enrich data for consistency.
-3. **Loading:** Store transformed data into a centralised data warehouse.
+## **Database Schema**
 
-### Data Warehouse Schema
-- **Schema:** Star or Snowflake schema with fact and dimension tables.
-- **Fact Tables:** Inventory transactions, order details, and shipping logs.
-- **Dimension Tables:** Products, suppliers, warehouses, and customers.
-
-### Analytics Layer
-- Pre-defined queries for operational insights.
-- Custom dashboards for KPI tracking.
-
-## Key Deliverables
-- **Data Warehouse Schema:** A fully normalised and optimised schema.
-- **ETL Pipelines:** Scripts and workflows for automated data ingestion.
-- **Dashboards and Reports:** Interactive dashboards displaying key operational metrics.
-- **Documentation:** Clear instructions for setup, usage, and future maintenance.
-
-## How to Use
-1. **Clone this repository:**
-   ```bash
-   git clone https://github.com/yourusername/warehouse-management.git
-   cd warehouse-management
-   ```
-2. **Set up the environment:**
-
- - Install required Python packages:
-```bash
-pip install -r requirements.txt
+### **Tables**
+#### 1. **`inventory`**
+Tracks warehouse items, their quantities, and storage locations.
+```sql
+CREATE TABLE inventory (
+    item_id INT PRIMARY KEY,
+    item_name VARCHAR(255),
+    quantity INT,
+    warehouse_location VARCHAR(50)
+);
 ```
- - Configure database connection details in config.yaml.
 
-3. **Run the ETL pipeline:**
-
-```bash
-python etl_pipeline.py
+#### 2. **`orders`**
+Records order transactions for inventory items.
+```sql
+CREATE TABLE orders (
+    order_id INT PRIMARY KEY,
+    item_id INT REFERENCES inventory(item_id),
+    quantity INT,
+    order_date DATE
+);
 ```
-4. **Explore dashboards:**
 
- - Open the visualisations folder to access Tableau or Power BI files.
+#### 3. **`suppliers`**
+Stores supplier details, including lead times for supplying inventory items.
+```sql
+CREATE TABLE suppliers (
+    supplier_id INT PRIMARY KEY,
+    supplier_name VARCHAR(255),
+    item_id INT REFERENCES inventory(item_id),
+    supply_lead_time INT
+);
+```
 
-## Future Enhancements
- - Integration with predictive analytics for demand forecasting.
- - Deployment of machine learning models to optimise stock levels.
- - Expansion to include real-time IoT data from warehouse sensors.
+---
+
+## **SQL Queries**
+
+### 1. **Check Low Inventory**
+Identifies items with quantities below a threshold:
+```sql
+SELECT item_name, quantity
+FROM inventory
+WHERE quantity < 100;
+```
+
+### 2. **Identify Fastest Suppliers for Low-Stock Items**
+Lists suppliers for items with low stock, sorted by lead time:
+```sql
+SELECT s.supplier_name, i.item_name, s.supply_lead_time
+FROM suppliers s
+JOIN inventory i ON s.item_id = i.item_id
+WHERE i.quantity < 100
+ORDER BY s.supply_lead_time ASC;
+```
+
+### 3. **Aggregate Order Quantities**
+Summarises total quantities ordered for each item:
+```sql
+SELECT item_id, SUM(quantity) as total_ordered
+FROM orders
+GROUP BY item_id;
+```
+
+---
+
+## **Installation**
+
+### **1. Clone the Repository**
+```bash
+git clone https://github.com/drnsmith/warehouse-management-system.git
+cd warehouse-management-system
+```
+
+### **2. Set Up Python Environment**
+- Create a virtual environment:
+  ```bash
+  python -m venv venv
+  ```
+- Activate the virtual environment:
+  - On Windows:
+    ```bash
+    venv\Scripts\activate
+    ```
+  - On Unix or macOS:
+    ```bash
+    source venv/bin/activate
+    ```
+- Install dependencies:
+  ```bash
+  pip install -r requirements.txt
+  ```
+
+### **3. Set Up PostgreSQL**
+- Create a PostgreSQL database:
+  ```sql
+  CREATE DATABASE warehouse_db;
+  ```
+- Run the SQL schema definitions to create the tables (`inventory`, `orders`, `suppliers`).
+
+### **4. Configure Database Connection**
+- Update the `config.yaml` file with your database credentials:
+  ```yaml
+  database:
+    host: "localhost"
+    port: 5432
+    user: "your_username"
+    password: "your_password"
+    database: "warehouse_db"
+  ```
+
+---
+
+## **Usage**
+
+### **1. Load Data**
+- Place your CSV files for inventory in the directory specified in `config.yaml`.
+- Run the Python ETL pipeline:
+  ```bash
+  python main.py
+  ```
+
+### **2. Execute SQL Queries**
+- Use the provided SQL queries to:
+  - Identify low-stock items.
+  - Find the fastest suppliers.
+  - Analyse order trends.
+
+---
+
+## **Future Enhancements**
+1. **Data Validation**:
+   - Ensure input data adheres to schema constraints before loading.
+2. **Reporting Dashboard**:
+   - Create a dashboard for real-time monitoring of inventory, orders, and supplier metrics.
+3. **Machine Learning**:
+   - Predict inventory shortages based on historical order trends and lead times.
+---
+
+## Contributing
+Special thanks to Ela Bastani for her dedication to making this project a success. 
+
+If you have any questions or suggestions, please feel free to open an issue or contact me directly. 
+
+Contributions are welcome! Please fork the repository and submit a pull request with your changes. For major updates, open an issue to discuss them first.
 
 ## License
-This project is licensed under the MIT License.
+This project is licensed under the MIT License. See the LICENSE file for details.
 
-## Acknowledgments
-Special thanks to Ela Bastani for her dedication to making this project a success. If you have any questions or suggestions, please feel free to open an issue or contact me directly.

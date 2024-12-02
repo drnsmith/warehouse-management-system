@@ -142,7 +142,7 @@ cd warehouse-management-system
 - Place your CSV files for inventory in the directory specified in `config.yaml`.
 - Run the Python ETL pipeline:
   ```bash
-  python main.py
+  python etl_pipeline.py
   ```
 
 ### **2. Execute SQL Queries**

@@ -1,11 +1,11 @@
-# **Warehouse Management System**
+### Scalable Data Warehouse Design with Snowflake and Oracle
 
-## **Project Overview**
+#### **Overview**
 This project demonstrates a **warehouse management system** that uses **ETL pipelines** and **PostgreSQL** for efficient inventory and order management. The system supports data ingestion, low-stock alerts, supplier management, and analytical queries to enhance operational decision-making.
 
 ---
 
-## **Features**
+#### **Features**
 1. **Database Schema**:
    - Tracks inventory, orders, and supplier details through a relational database.
    - Enforces referential integrity using foreign keys.

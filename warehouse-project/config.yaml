@@ -1,0 +1,13 @@
+database:
+  host: localhost
+  port: 5432
+  user: warehouse_user
+  password: warehouse_password
+  database: warehouse_db
+
+etl:
+  source_files:
+    inventory: data/sample_inventory.csv
+    orders: data/sample_orders.csv
+    suppliers: data/sample_suppliers.csv
+

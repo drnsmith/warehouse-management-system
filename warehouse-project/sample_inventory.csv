@@ -1,0 +1,4 @@
+item_id,item_name,quantity,warehouse_location
+101,Widget A,500,A1
+102,Widget B,200,B2
+103,Widget C,300,A2

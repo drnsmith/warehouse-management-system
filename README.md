@@ -162,6 +162,14 @@ cd warehouse-management-system
    - Predict inventory shortages based on historical order trends and lead times.
 ---
 
+### Productisation  
+This data warehouse management system can be expanded into a **scalable cloud-based analytics platform**, integrating with **Snowflake, Oracle, and other enterprise data solutions**. By incorporating **real-time inventory tracking, automated supplier recommendations, and predictive analytics**, the system can support businesses in optimising **inventory forecasting, supply chain efficiency, and operational decision-making**. Future enhancements could include **multi-warehouse support** and an **interactive dashboard for live monitoring**.
+
+### Monetisation  
+The system can be monetised through a **subscription-based SaaS model**, providing **warehouse and supply chain analytics** for retailers, logistics companies, and manufacturers. Additional revenue streams include **API-based data access for third-party ERP systems**, **enterprise licensing for customised deployments**, and premium **AI-powered forecasting models** for high-volume inventory management. Consulting services can also be offered for businesses requiring **bespoke warehouse automation and predictive analytics solutions**.
+
+---
+
 ## Contributing
 Special thanks to Ela Bastani for her dedication to making this project a success. 
 
